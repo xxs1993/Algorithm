@@ -29,7 +29,7 @@ public class SeperateChaining {
         return null;
     }
 
-    public void put(Object key,Object value){
+    private void put(Object key,Object value){
         int hash = hash(key);
         for(Node x = array[hash]; x.next!=null;x=x.next ){
             if(key.equals(x.key))x.value =value;return;

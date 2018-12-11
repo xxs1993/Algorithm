@@ -1,45 +1,36 @@
 package ch4;
 
-
-import sun.misc.Queue;
-
-import java.util.Stack;
+import java.util.PriorityQueue;
+import java.util.Queue;
 
 public class Demo {
     private boolean[] marked;
-    private int V;
+    private int[] edgeTo ;
+    private int[] distanceTo;
     private int s;
-    private int[] edgeTo;
     public Demo(Graph g,int s){
-        this.V = g.V();
+        int v = g.V();
+        marked = new boolean[v];
+        edgeTo = new int[v];
+        distanceTo = new int[v];
         this.s = s;
-        marked = new boolean[this.V];
-        dfs(g,s);
     }
-
-    private void dfs(Graph g,int s){
+    public void bfs(Graph g,int s){
+        Queue<Integer> queue = new PriorityQueue<>();
+        queue.add(s);
         marked[s] = true;
-        for(int i : g.adj(s)){
-            if(!marked[i]){
-                dfs(g,i);
-                edgeTo[i] =s;
+        distanceTo[s] = 0;
+        while (!queue.isEmpty()){
+            int v = queue.poll();
+            for(int w : g.adj(v)){
+                if(marked[w]){
+                    continue;
+                }
+                queue.add(w);
+                distanceTo[w] = 1+distanceTo[v];
+                marked[w] = true;
+                edgeTo[w] = v;
             }
         }
-    }
-
-    public boolean hasPathTo(int v){
-        return marked[v];
-    }
-
-    public Iterable<Integer> pathTo(int v){
-        if(!hasPathTo(v)) return null;
-        Stack<Integer> queue = new Stack<>();
-        queue.push(v);
-        while (v!=s){
-            queue.push(edgeTo[v]);
-            v = edgeTo[v];
-        }
-        queue.push(v);
-        return queue;
     }
 }

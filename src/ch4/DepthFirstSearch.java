@@ -21,8 +21,8 @@ public class DepthFirstSearch {
        marked[v] = true;
        for(int w : g.adj(v)){
            if(!marked[w]){
-               edgeTo[w] = v;
                dfs(g,w);
+               edgeTo[w] = v;
            }
        }
    }
