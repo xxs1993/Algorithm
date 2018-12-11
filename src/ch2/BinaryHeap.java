@@ -34,8 +34,8 @@ public class BinaryHeap {
     private void sink(int k){
         while (2*k <=N){
             int j = 2*k;
-            if(j<N &&a[j]>a[j+1]) j++;
-            if(a[k]<a[j]) break;
+            if(j<N &&a[j]<a[j+1]) j++;
+            if(a[k]>=a[j]) break;
             Helper.swap(a,k,j);
              k = j;
         }

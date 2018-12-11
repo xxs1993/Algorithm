@@ -34,8 +34,7 @@ public class MinQueue<Key extends Comparable<Key>> {
     }
 
     private void swim(int k){
-        while (k>1){
-            if(array[k].compareTo(array[k/2])>=0) break;
+        while (k>1 && array[k].compareTo(array[k/2])<=0){
             swap(k,k/2);
             k = k/2;
         }

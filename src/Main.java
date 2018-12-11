@@ -26,4 +26,15 @@ public class Main {
             System.out.print(i +" , ");
         }
     }
+
+
+    private Node put(Node x,Key key,Value value,boolean color){
+        if(x == null) return new Node(key,value,color);
+        int cmp = key.compareTo(x.key);
+        if(cmp < 0) x.left = put(x.left,key,value,color);
+        else if(cmp > 0) x.right = put(x.right,key,value,color);
+        else {
+
+        }
+    }
 }

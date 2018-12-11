@@ -73,6 +73,7 @@ public class BinarySearchTree {
         return x;
     }
     private Node min(Node x){
+        if(x == null) return null;
         while (x.left!=null)x = x.left;
         return x;
     }
@@ -87,8 +88,8 @@ public class BinarySearchTree {
             if(x.right == null) return x.left;
             Node t = x;
             x = min(t.right);
-            x.left = deleteMin(t.right);
-            x.right = t.right;
+            x.right = deleteMin(t.right);
+            x.left = t.left;
         }
         x.count = size(x.left) + size(x.right) +1;
         return x;
