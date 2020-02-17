@@ -1,1 +1,1 @@
-# info6205Quiz
+# Some Algorithm
